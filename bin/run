@@ -9,5 +9,13 @@ if (dev) {
   require('ts-node').register({project})
 }
 
-require('../src').run()
-.catch(require('@oclif/errors/handle'))
+try {
+  // tslint:disable-next-line
+  var biotopeSketcherCli = require('biotope-sketcher-cli');
+  // tslint:disable-next-line
+  biotopeSketcherCli.run();
+  // tslint:disable-next-line
+} catch(e) {
+  // tslint:disable-next-line
+  console.error(e.message);
+}
