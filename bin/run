@@ -11,7 +11,7 @@ if (dev) {
 
 try {
   // tslint:disable-next-line
-  var biotopeSketcherCli = require(path.join(__dirname, '../src/index.js'));
+  var biotopeSketcherCli = require(path.join(__dirname, '../bin/run.js'));
   // tslint:disable-next-line
   biotopeSketcherCli.run();
   // tslint:disable-next-line
