@@ -38,6 +38,8 @@
   },
   "repository": "virtual-identity/biotope-sketcher-cli",
   "scripts": {
+    "start": "npm run build && ./bin/run",
+    "build": "tsc",
     "posttest": "tslint -p . -t stylish",
     "test": "echo NO TESTS"
   },
