@@ -1,6 +1,6 @@
 import { Page, nodeToSketchLayers } from '@brainly/html-sketchapp';
 
-function flatten(arr) {
+function flatten(arr: any[]) {
   return [].concat(...arr);
 }
 
@@ -19,9 +19,13 @@ export function __biotope_sketcher_run(mainNode = document.body) {
   while (queue.length) {
     const node = queue.pop();
 
+    if (!node) {
+      return;
+    }
+
     arrayOfLayers.push(nodeToSketchLayers(node));
 
-    Array.from(node.children).forEach(child => queue.push(child));
+    Array.from(node.children).forEach(child => queue.push(child as any));
   }
 
   flatten(arrayOfLayers).forEach(layer => page.addLayer(layer));

@@ -16,7 +16,7 @@ const openPage = async (url: string) => {
 
     page.setViewport({ width: 1920, height: 1080 });
 
-    // add logger bubbling from puppeter to node process;
+    // add logger bubbling from puppeter to node process
     page.on('console', (messages: any) => Array.from(messages.args())
     .forEach((message, index) => console.log(`${index}: ${message}`)));
 
@@ -29,7 +29,7 @@ const openPage = async (url: string) => {
 }
 
 const processPage = (outputPrefix: string) => async ({ browser, page }: { browser: any, page: any}) => {
-    const { content } = contentToScript(getContent(`./bin/domParser/asketch.js`));
+    const { content } = contentToScript(getContent(`./bin/lib/dom-parser/domToAlmostSketch.js`));
 
     const componentLinks = JSON.parse(await page.evaluate(evaluateDesignSystem, {
         blacklistedLinks,

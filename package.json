@@ -44,7 +44,7 @@
   "scripts": {
     "start": "npm run clean && npm run build && ./bin/run \"http://preview.virtual-identity.com/biotope/MAN/frontend-turbo-diesel/develop\"",
     "clean": "rm -rf ./dist && mkdir ./dist",
-    "build": "tsc && webpack ./src/domParser/asketch.js -o ./bin/domParser/asketch.js --mode development",
+    "build": "tsc && webpack ./bin/lib/dom-parser/domToAlmostSketch.js -o ./bin/lib/dom-parser/domToAlmostSketch.js --mode development",
     "posttest": "tslint -p . -t stylish",
     "test": "echo NO TESTS"
   },
