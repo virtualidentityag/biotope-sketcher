@@ -8,7 +8,7 @@ function flatten(arr: any[]) {
 export function __biotope_sketcher_run(mainNode = document.body) {
   const page = new Page({
     width: document.body.offsetWidth,
-    height: document.body.offsetHeight
+    height: document.body.offsetHeight,
   });
 
   page.setName(document.title);

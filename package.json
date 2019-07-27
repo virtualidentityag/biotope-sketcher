@@ -48,7 +48,7 @@
     "build": "tsc && webpack ./bin/lib/dom-parser/domToAlmostSketch.js -o ./bin/lib/dom-parser/domToAlmostSketch.js --mode development",
     "posttest": "tslint -p . -t stylish",
     "test": "echo NO TESTS",
-    "lint": "biotope-quality-gate lint --pattern src"
+    "lint": "biotope-quality-gate lint --fix --pattern src"
   },
   "types": "lib/index.d.ts"
 }
