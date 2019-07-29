@@ -1,6 +1,6 @@
 export{};
 const puppeteer = require('puppeteer');
-const { Document, Page } = require('@brainly/html-sketchapp');
+const { Document, Page, Artboard } = require('@brainly/html-sketchapp');
 
 const { getContent, write } = require('./files');
 const { contentToScript } = require('./scripts');
@@ -53,15 +53,25 @@ const processPage = (outputPrefix: string) =>
     await page.goto(link, { waitUntil: 'networkidle2' });
     await page.addScriptTag({ content });
 
-    const pageData = await page.evaluate(evaluateComponent);
-    
-    // manually add page to converted document
-    sketchDocumentRevived.pages.push({
-        _class: 'MSJSONFileReference',
-        _ref_class: 'MSImmutablePage',
-        _ref: JSON.parse(pageData).do_objectID
+    const breakpoints = [1280, 1024, 768, 375];
+    // this will hold our page data (artboards inside page)
+    let pagesData;
+
+    await asyncForEach(breakpoints, async (width: number) => {
+      await page.setViewport({ width, height: 900 });
+      const pageData = await page.evaluate(evaluateComponent);
+      pagesData = pageData;
     })
-    write(`${outputPrefix}${componentName}`, pageData);
+
+    write(`${outputPrefix}${componentName}`, pagesData);
+
+    // manually add page to converted document
+    // sketchDocumentRevived.pages.push({
+    //     _class: 'MSJSONFileReference',
+    //     _ref_class: 'MSImmutablePage',
+    //     _ref: JSON.parse(pageData).do_objectID
+    // })
+    // write(`${outputPrefix}${componentName}`, pageData);
 
     // const pageDataAsPageInstance = pageData;
     // const pageInstance = new Page({ 
@@ -70,13 +80,12 @@ const processPage = (outputPrefix: string) =>
     // });
 
     // pageDataAsPageInstance.__proto__ = pageInstance;
-    // console.log(JSON.stringify(pageDataAsPageInstance));
 
     // sketchDocument.addPage(pageDataAsPageInstance);
     // write(`${outputPrefix}${componentName}`, JSON.stringify(pageDataAsPageInstance.toJSON()));
   });
 
-  write(`${outputPrefix}_document.asketch.json`, JSON.stringify(sketchDocumentRevived));
+  // write(`${outputPrefix}_document.asketch.json`, JSON.stringify(sketchDocumentRevived));
 
   browser.close();
   process.exit();
