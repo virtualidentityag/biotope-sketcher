@@ -13,10 +13,8 @@ const blacklistedLinks = [
 ];
 
 const openPage = async (url: string) => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: true, defaultViewport: null });
   const page = await browser.newPage();
-
-  page.setViewport({ width: 1920, height: 1080 });
 
   // add logger bubbling from puppeter to node process
   page.on('console', (messages: any) => Array.from(messages.args())
