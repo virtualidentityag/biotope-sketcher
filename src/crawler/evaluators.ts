@@ -1,6 +1,6 @@
 
 export {};
-declare var __biotope_sketcher_run: Function;
+declare let __biotope_sketcher_run: Function;
 
 const evaluateDesignSystem = ({ blacklistedLinks }: { blacklistedLinks: string[]}) => {
   let url: string | string[] = (new URL(window.location.href)).href.split('/');

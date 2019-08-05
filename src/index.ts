@@ -1,4 +1,5 @@
-import {Command} from '@oclif/command'
+import { Command } from '@oclif/command';
+
 const { openPage, processPage } = require('./crawler/page');
 
 class BiotopeSketcherCli extends Command {

@@ -7,7 +7,7 @@ const isDirectory = (file: any) => lstatSync(file).isDirectory();
 
 const getFiles = (path: string) => readdirSync(path)
   .map((file: string) => `${path}/${file}`)
-  .filter((file: string)  => !isDirectory(file));
+  .filter((file: string) => !isDirectory(file));
 
 const getContent = (path: string) => readFileSync(path, { encoding: 'utf8' });
 
