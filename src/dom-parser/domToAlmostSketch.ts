@@ -1,3 +1,4 @@
+import { fixPseudoElements, fixVideoPoster } from './fixPseudoElements';
 import { Page, Artboard, nodeToSketchLayers } from '@brainly/html-sketchapp';
 declare global {
   interface Window { page: any; }
@@ -9,6 +10,8 @@ function flatten(arr: any[]) {
 
 // Node: we could also use nodeTreeToSketchPage here and avoid traversing DOM ourselves
 export function __biotope_sketcher_run(mainNode = document.body) {
+  fixPseudoElements();
+  fixVideoPoster();
   const { offsetWidth, offsetHeight } = document.body;
 
   // create a page object in case there isn't one already
