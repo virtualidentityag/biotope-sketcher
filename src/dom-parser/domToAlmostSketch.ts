@@ -53,28 +53,21 @@ export function __biotope_sketcher_run(mainNode = document.body) {
 
       symbol = existingSymbolMaster 
         ? existingSymbolMaster.getSymbolInstance({ x: left, y: top, width, height })
-        : new SymbolMaster({
-            x: left, y: top,
-            // x: -200 - offsetWidth, 
-            // y: [0, ...arrayOfSymbols.map(el => el._height)].reduce((a, v) => a + v) + 200,
-            width, 
-            height 
-          });
+        : new SymbolMaster({ x: left, y: top, width, height });
 
-      // add children layers
-      const parentAndChildren = [node, ...node.querySelectorAll('*')];
-      Array.from(parentAndChildren)
-        .map(n => {
-          const layers = nodeToSketchLayers(n);
-          layers.forEach((layer: any) => layer.setName(buildLayerNameFromBEM(n.classList)));
-
-          return layers;
-        })
-        .reduce((prev, current) => prev.concat(current), [])
-        .filter((layer: any) => layer !== null)
-        .forEach((layer: any) => symbol.addLayer(layer));
-
+      
       if (!existingSymbolMaster) {
+        const parentAndChildren = [node, ...node.querySelectorAll('*')];
+        Array.from(parentAndChildren)
+          .map(n => {
+            const layers = nodeToSketchLayers(n);
+            layers.forEach((layer: any) => layer.setName(buildLayerNameFromBEM(n.classList)));
+
+            return layers;
+          })
+          .reduce((prev, current) => prev.concat(current), [])
+          .filter((layer: any) => layer !== null)
+          .forEach((layer: any) => symbol.addLayer(layer));
         symbol.setId(name);
         arrayOfSymbols.push(symbol);
       }
