@@ -43,7 +43,7 @@
   },
   "repository": "virtual-identity/biotope-sketcher-cli",
   "scripts": {
-    "start": "npm run clean && npm run build && ./bin/run \"http://preview.virtual-identity.com/biotope/MAN/frontend-turbo-diesel/develop\"",
+    "start": "npm run clean && npm run build && ./bin/run \"https://mr-aem-jenkins.munichre.com/preview/develop/\"",
     "clean": "rm -rf ./dist && mkdir ./dist",
     "build": "tsc && webpack ./bin/lib/dom-parser/domToAlmostSketch.js -o ./bin/lib/dom-parser/domToAlmostSketch.js --mode development",
     "posttest": "tslint -p . -t stylish",

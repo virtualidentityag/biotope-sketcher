@@ -10,6 +10,15 @@ const { evaluateDesignSystem, evaluateComponent } = require('./evaluators');
 const blacklistedLinks = [
   '^#',
   '^browserSupport.',
+  '10components.',
+  '15form.',
+  '20Topics-Online-Components.',
+  '21basics.',
+  '30pages.',
+  '30pages.',
+  '40greyBackground',
+  '00clickDemo.',
+  '01framework.'
 ];
 
 const openPage = async (url: string) => {
@@ -59,7 +68,7 @@ const processPage = (outputPrefix: string) =>
       await page.setViewport({ width, height: 900 });
       const pageData = await page.evaluate(evaluateComponent);
       pagesData = pageData;
-    })
+    });
 
     write(`${outputPrefix}${componentName}`, pagesData);
 
