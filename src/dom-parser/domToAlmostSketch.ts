@@ -1,4 +1,5 @@
 import { fixPseudoElements, fixVideoPoster } from './fixPseudoElements';
+import { removeInvisibleNodes } from './removeInvisibleNodes';
 import { flatten, buildLayerNameFromBEM, createSymbolName } from './utils';
 import { Page, Artboard, SymbolMaster, nodeToSketchLayers } from '@brainly/html-sketchapp';
 declare global {
@@ -9,6 +10,7 @@ declare global {
 export function __biotope_sketcher_run(mainNode = document.body) {
   fixPseudoElements();
   fixVideoPoster();
+  // removeInvisibleNodes(['headerCw__logoRowFlexFill']);
   const { offsetWidth, offsetHeight } = document.body;
 
   // create a page object in case there isn't one already
@@ -45,7 +47,7 @@ export function __biotope_sketcher_run(mainNode = document.body) {
     }
 
     // create symbols
-    if(node.classList.contains('callToAction')) {
+    if (node.classList.contains(window.location.href.split('.').reverse()[1])) {
       // check if symbol already exists and grab the the symbol master if it does
       const name = createSymbolName(node.classList, offsetWidth);
       const existingSymbolMaster = arrayOfSymbols.filter(symbolMaster => symbolMaster._symbolID === name).pop();
@@ -54,7 +56,6 @@ export function __biotope_sketcher_run(mainNode = document.body) {
       symbol = existingSymbolMaster 
         ? existingSymbolMaster.getSymbolInstance({ x: left, y: top, width, height })
         : new SymbolMaster({ x: left, y: top, width, height });
-
       
       if (!existingSymbolMaster) {
         const parentAndChildren = [node, ...node.querySelectorAll('*')];
@@ -68,11 +69,14 @@ export function __biotope_sketcher_run(mainNode = document.body) {
           .reduce((prev, current) => prev.concat(current), [])
           .filter((layer: any) => layer !== null)
           .forEach((layer: any) => symbol.addLayer(layer));
+
         symbol.setId(name);
         arrayOfSymbols.push(symbol);
       }
       symbol.setName(name);
-      arrayOfLayers.push(symbol.getSymbolInstance({ x: left, y: top, width, height }));
+      if (symbol.getSymbolInstance) {
+        arrayOfLayers.push(symbol.getSymbolInstance({ x: left, y: top, width, height }));
+      }
     }
     else { 
       arrayOfLayers.push(nodeToSketchLayers(node));
