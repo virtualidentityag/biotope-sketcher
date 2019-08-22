@@ -54,11 +54,6 @@ export const fixPseudoElements = () => {
 
 export const fixVideoPoster = () => {
     const AllPageVideos: any[] = [].slice.call(document.querySelectorAll('video'));
-    console.log('AllPageVid', AllPageVideos)
-    AllPageVideos.forEach(element => {
-        console.log('element', element)
-        element.setAttribute('style', `
-      background: url(${element.poster});
-    `);
-    });
+    AllPageVideos.forEach(element => 
+        element.setAttribute('style', `background: url(${element.poster});`));
 };
