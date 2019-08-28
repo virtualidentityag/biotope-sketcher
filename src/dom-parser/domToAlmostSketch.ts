@@ -1,5 +1,5 @@
 import { fixPseudoElements, fixVideoPoster } from './fixPseudoElements';
-import { removeInvisibleNodes } from './removeInvisibleNodes';
+import { removeInvisibleNodes, removeNodes } from './removeInvisibleNodes';
 import { flatten, buildLayerNameFromBEM, createSymbolName } from './utils';
 import { Page, Artboard, SymbolMaster, nodeToSketchLayers } from '@brainly/html-sketchapp';
 declare global {
@@ -11,6 +11,7 @@ export function __biotope_sketcher_run(mainNode = document.body) {
   fixPseudoElements();
   fixVideoPoster();
   // removeInvisibleNodes(['headerCw__logoRowFlexFill']);
+  removeNodes(['.overlayContainer', '.cookiecontainer', '.disclaimercontainer']);
   const { offsetWidth, offsetHeight } = document.body;
 
   // create a page object in case there isn't one already
