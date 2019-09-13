@@ -73,11 +73,13 @@ export function __biotope_sketcher_run(mainNode = document.body) {
 
         symbol.setId(name);
         arrayOfSymbols.push(symbol);
+        symbol.setName(name);
       }
-      symbol.setName(name);
-      if (symbol.getSymbolInstance) {
-        arrayOfLayers.push(symbol.getSymbolInstance({ x: left, y: top, width, height }));
-      }
+
+      arrayOfLayers.push(symbol);
+
+      // we already added the children when creating the symbol, so we can skip all child nodes
+      continue;
     }
     else { 
       arrayOfLayers.push(nodeToSketchLayers(node));
