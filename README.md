@@ -31,10 +31,10 @@ cd build
 This last step will generate a new executable file to be placed inside the Plugins folder on Sketch.
 
 ## Usage
-Open sketch:
+Open sketch; <br />
 Inside the Plugins tab choose From Almost Sketch to Sketch and import the files
 
-<img src='sketch_screenshot.png' width='600' alt='Import html-Sketchapp'>
+<img src='biotope-sketcher.gif' alt='Import html-Sketchapp'>
 
 biotope-sketcher-cli
 ====================
