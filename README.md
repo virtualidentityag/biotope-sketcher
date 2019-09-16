@@ -1,9 +1,9 @@
-#BIOTOPE-SKETCHER
+# BIOTOPE-SKETCHER
 
 Transform, Edit and Create astonishing Biotope Design Systems instantly in all viewports with Sketch.
 Biotope-Sketcher works only with macOS if you have an issue please [file an issue](https://github.com/virtualidentityag/biotope-sketcher/issues).
 
-##Instalation
+## Instalation
 You can install the biotope-sketcher on your machine by cloning this project
 
 ```bash
@@ -20,7 +20,7 @@ cd my-repository
 npm install
 ```
 
-##Build
+## Build
 To use this project on Sketch, navigate to the HTML-sketchap folder and them:
 
 ```bash
@@ -30,7 +30,7 @@ cd build
 ```
 This last step will generate a new executable file to be placed inside the Plugins folder on Sketch.
 
-##Usage
+## Usage
 Open sketch:
 Inside the Plugins tab choose From Almost Sketch to Sketch and import the files
 
