@@ -34,6 +34,11 @@ npm start
 cd build
 ```
 This last step will generate a new executable file to be placed inside the Plugins folder on Sketch.
+To generate the files navigate to Biotope-Sketcher folder and run 
+
+```bash
+npm start
+```
 
 ## Usage
 Open sketch; <br />
