@@ -46,5 +46,5 @@ Inside the Plugins tab choose From Almost Sketch to Sketch and import the files
 
 <img src='./biotope-sketcher.gif' alt='Import html-Sketchapp'>
 
-##License
+## License
 Biotpe-sketcher is [MIT License](./LICENSE)
